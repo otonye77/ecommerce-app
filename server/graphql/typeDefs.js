@@ -9,6 +9,7 @@ const typeDefs = gql`
     description: String
   }
   type Query {
+    product(id: String): Product
     products(searchTerm: String): [Product]!
   }
 `;

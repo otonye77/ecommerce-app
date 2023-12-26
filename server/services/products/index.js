@@ -17,6 +17,19 @@ const getProducts = (searchTerm) => {
   }
 };
 
+const getProductById = (id) => {
+  try {
+    const product = productData.find((p) => p.id === id);
+    if (!product) {
+       throw new Error("Product not found");
+    }
+    return product;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   getProducts,
+  getProductById,
 };
