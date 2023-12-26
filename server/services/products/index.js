@@ -21,7 +21,7 @@ const getProductById = (id) => {
   try {
     const product = productData.find((p) => p.id === id);
     if (!product) {
-       throw new Error("Product not found");
+      throw new Error("Product not found");
     }
     return product;
   } catch (error) {
@@ -29,7 +29,22 @@ const getProductById = (id) => {
   }
 };
 
+const createProduct = (input) => {
+  try {
+    const newProduct = {
+      id: String(productData.length + 1),
+      ...input,
+    };
+    productData.push(newProduct);
+    return newProduct;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to create product");
+  }
+};
+
 module.exports = {
   getProducts,
   getProductById,
+  createProduct,
 };
