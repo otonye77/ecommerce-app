@@ -17,6 +17,12 @@ const typeDefs = gql`
     description: String
   }
 
+  type Order {
+    id: String!
+    products: [Product]!
+    status: String!
+  }
+
   type Query {
     product(id: String): Product
     products(searchTerm: String): [Product]!
@@ -24,8 +30,9 @@ const typeDefs = gql`
 
   type Mutation {
     createProduct(input: ProductInput): Product!
+    createOrder(productIds: [String]!): Order!
   }
-  
+
 `;
 
 module.exports = {

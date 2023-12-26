@@ -1,4 +1,9 @@
-const { getProducts, getProductById, createProduct } = require("../services");
+const {
+  getProducts,
+  getProductById,
+  createProduct,
+} = require("../services");
+const { createOrder } = require("../services/order");
 
 const resolvers = {
   Query: {
@@ -6,8 +11,9 @@ const resolvers = {
     products: (_, { searchTerm }) => getProducts(searchTerm),
   },
   Mutation: {
-    createProduct: (_, {input}) => createProduct(input)
-  }
+    createProduct: (_, { input }) => createProduct(input),
+    createOrder: (_, { productIds }) => createOrder(productIds),
+  },
 };
 
 module.exports = {
