@@ -13,7 +13,7 @@ async function start() {
 
   app.use("/graphql", expressMiddleware(graph));
 
-  app.listen(7000, () => {
+  app.listen(7000, '0.0.0.0', () => {
     console.log(`Server is running on port 7000 http://localhost:7000/graphql`);
   });
 }

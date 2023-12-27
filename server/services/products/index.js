@@ -2,6 +2,7 @@ const { productData } = require("../../productData");
 
 const getProducts = (searchTerm) => {
   try {
+    console.log('hit')
     if (!searchTerm) {
       return productData;
     }
