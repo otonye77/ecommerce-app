@@ -101,7 +101,6 @@ const Order = () => {
                 <View style={styles.productItem}>
                   <Text>Name: {product.name}</Text>
                   <Text>Price: ${product.price}</Text>
-                  <Text>Quantity: {product.quantity}</Text>
                 </View>
               )}
             />
