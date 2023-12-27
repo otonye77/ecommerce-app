@@ -27,7 +27,6 @@ const ProductDetails = ({ route }) => {
       <Text style={styles.productDescription}>{product.description}</Text>
       <Text style={styles.productPrice}>${product.price}</Text>
       <Button onPress={handleAddToOrder}>Add to Order</Button>
-      {/* <Button onPress={handleAddToOrder}>Add To Order</Button> */}
     </View>
   );
 };
