@@ -41,6 +41,7 @@ const typeDefs = gql`
     createProduct(input: ProductInput): Product!
     createOrder(productIds: [String]!): Order!
     deleteOrder(orderId: String!): OrderDeletionResponse
+    resetOrder: Boolean
   }
 
   type OrderDeletionResponse {

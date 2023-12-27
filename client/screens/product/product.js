@@ -66,7 +66,7 @@ const Product = () => {
         >
           <Text>Sort By: </Text>
         </View>
-
+        {products.length === 0 && <Text>Product Not Found</Text>}
         <FlatList
           data={products}
           keyExtractor={(item) => item.id.toString()}

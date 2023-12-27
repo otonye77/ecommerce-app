@@ -66,8 +66,20 @@ const getOrders = () => {
   return orders;
 };
 
+const resetOrder = () => {
+  try {
+    console.log("Resetting orders");
+    orders.length = 0;
+    return true;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to reset orders");
+  }
+};
+
 module.exports = {
   createOrder,
   deleteOrder,
   getOrders,
+  resetOrder,
 };

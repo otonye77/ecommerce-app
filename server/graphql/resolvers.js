@@ -3,7 +3,7 @@ const {
   getProductById,
   createProduct,
 } = require("../services");
-const { createOrder, deleteOrder, getOrders } = require("../services/order");
+const { createOrder, deleteOrder, getOrders, resetOrder } = require("../services/order");
 
 const resolvers = {
   Query: {
@@ -15,6 +15,7 @@ const resolvers = {
     createProduct: (_, { input }) => createProduct(input),
     createOrder: (_, { productIds }) => createOrder(productIds),
     deleteOrder: (_, { orderId }) => deleteOrder(orderId),
+    resetOrder: () => resetOrder(),
   },
 };
 
