@@ -11,3 +11,20 @@ export const GET_ALL_PRODUCTS = gql`
       }
    }
 `;
+
+export const GET_ORDERS = gql`
+  query {
+    orders {
+      id
+      products {
+        id
+        name
+        price
+        photo
+        description
+        quantity
+      }
+      status
+    }
+  }
+`;

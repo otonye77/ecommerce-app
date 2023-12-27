@@ -14,9 +14,11 @@ import { useNavigation } from "@react-navigation/native";
 
 const Product = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortType, setSortType] = useState("default");
   const { loading, error, data } = useQuery(GET_ALL_PRODUCTS, {
     variables: { searchTerm: searchQuery }, 
   });
+
 
   const navigation = useNavigation();
 
@@ -46,9 +48,9 @@ const Product = () => {
             justifyContent: "center",
             zIndex: 100,
           }}
-          onPress={() => navigation.navigate("Cart")}
+          onPress={() => navigation.navigate("Order")}
         >
-          <Text style={{ color: "black" }}>Go to cart</Text>
+          <Text style={{ color: "black" }}>Go to order</Text>
         </TouchableOpacity>
         <Searchbar
           placeholder="Search"
