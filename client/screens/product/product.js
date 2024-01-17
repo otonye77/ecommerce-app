@@ -12,9 +12,9 @@ import { GET_ALL_PRODUCTS } from "../../graphql/query";
 import { Searchbar, Button, Menu, Divider, Provider } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
-const Product = () => {
+const Product = ({ route }) => {
+  const { userId } = route.params;
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortType, setSortType] = useState("default");
   const { loading, error, data } = useQuery(GET_ALL_PRODUCTS, {
     variables: { searchTerm: searchQuery }, 
   });
@@ -73,7 +73,7 @@ const Product = () => {
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("ProductDetails", { product: item });
+                navigation.navigate("ProductDetails", { product: item, userId });
               }}
               style={styles.productItem}
             >

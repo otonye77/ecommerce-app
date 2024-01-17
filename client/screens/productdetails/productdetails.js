@@ -4,21 +4,21 @@ import { Button } from "react-native-paper";
 import { useMutation } from "@apollo/client";
 import { CREATE_ORDER } from "../../graphql/mutation";
 
-
 const ProductDetails = ({ route }) => {
-  const { product } = route.params;
+  const { product, userId } = route.params;
+  console.log('This is the userId', userId);
   const [createOrderMutation] = useMutation(CREATE_ORDER);
 
-   const handleAddToOrder = async () => {
-     try {
+  const handleAddToOrder = async () => {
+    try {
       const response = await createOrderMutation({
-        variables: {productIds: [product.id]}
-      })
+        variables: { productIds: [product.id], userId: userId }, 
+      });
       console.log("Order created:", response.data.createOrder);
-     } catch (error) {
+    } catch (error) {
       console.error("Error adding product to order:", error.message);
-     }
-   }
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   productPrice: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#3498db", // Set the desired color
+    color: "#3498db",
   },
 });
 

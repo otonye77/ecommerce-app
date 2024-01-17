@@ -1,12 +1,19 @@
 const { getProductById } = require("../products");
+const { createUser, getUserById } = require("../users/index"); 
 const orders = [];
 
-const createOrder = (productIds) => {
+const createOrder = (productIds, userId) => {
   try {
     console.log("Creating order with productIds:", productIds);
 
+    const user = getUserById(userId);
+    if (!user) {
+      throw new Error(`User with ID ${userId} not found`);
+    }
+
     const newOrder = {
       id: String(orders.length + 1),
+      user,
       products: [],
       status: "Pending",
     };
@@ -36,17 +43,17 @@ const createOrder = (productIds) => {
   }
 };
 
-const deleteOrder = (orderId) => {
+const deleteOrder = (orderId, userId) => {
   try {
     console.log("Deleting order with ID:", orderId);
     console.log("Existing orders:", orders);
 
     const indexToDelete = orders.findIndex(
-      (order) => order.id === String(orderId)
+      (order) => order.id === String(orderId) && order.user.id === userId
     );
 
     if (indexToDelete === -1) {
-      throw new Error("Order not found");
+      throw new Error("Order not found or unauthorized");
     }
 
     const deletedOrder = orders.splice(indexToDelete, 1)[0];
@@ -61,6 +68,7 @@ const deleteOrder = (orderId) => {
     throw new Error("Failed to delete order");
   }
 };
+
 
 const getOrders = () => {
   return orders;

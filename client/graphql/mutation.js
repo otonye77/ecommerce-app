@@ -1,9 +1,14 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_ORDER = gql`
-  mutation CreateOrder($productIds: [String]!) {
-    createOrder(productIds: $productIds) {
+  mutation CreateOrder($productIds: [String]!, $userId: String!) {
+    createOrder(productIds: $productIds, userId: $userId) {
       id
+      user {
+        id
+        username
+        email
+      }
       products {
         id
         name
@@ -16,7 +21,6 @@ export const CREATE_ORDER = gql`
     }
   }
 `;
-
 export const RESET_ORDER = gql`
   mutation ResetOrder {
     resetOrder
@@ -38,4 +42,14 @@ export const DELETE_ORDER = gql`
       status
     }
   }
+`;
+
+export const CREATE_USER = gql`
+   mutation CreateUser($input: UserInput!){
+    createUser(input: $input){
+      id
+      username
+      email
+    }
+   }
 `;

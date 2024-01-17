@@ -9,6 +9,18 @@ const typeDefs = gql`
     description: String
   }
 
+  type User {
+    id: String!
+    username: String!
+    email: String!
+    orders: [Order]
+  }
+
+  input UserInput {
+    username: String!
+    email: String!
+  }
+
   input ProductInput {
     name: String!
     price: Float!
@@ -27,6 +39,7 @@ const typeDefs = gql`
 
   type Order {
     id: String!
+    user: User!
     products: [OrderProduct]!
     status: String!
   }
@@ -39,6 +52,7 @@ const typeDefs = gql`
 
   type Mutation {
     createProduct(input: ProductInput): Product!
+    createUser(input: UserInput): User!
     createOrder(productIds: [String]!): Order!
     deleteOrder(orderId: String!): OrderDeletionResponse
     resetOrder: Boolean

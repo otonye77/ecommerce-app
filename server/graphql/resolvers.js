@@ -1,9 +1,19 @@
+// resolvers.js
+
 const {
   getProducts,
   getProductById,
   createProduct,
 } = require("../services");
-const { createOrder, deleteOrder, getOrders, resetOrder } = require("../services/order");
+
+const {
+  createOrder,
+  deleteOrder,
+  getOrders,
+  resetOrder,
+} = require("../services/order");
+
+const { createUser, getUserById } = require("../services/users/index");
 
 const resolvers = {
   Query: {
@@ -12,9 +22,10 @@ const resolvers = {
     orders: () => getOrders(),
   },
   Mutation: {
+    createUser: (_, { input }) => createUser(input),
     createProduct: (_, { input }) => createProduct(input),
-    createOrder: (_, { productIds }) => createOrder(productIds),
-    deleteOrder: (_, { orderId }) => deleteOrder(orderId),
+    createOrder: (_, { productIds, userId }) => createOrder(productIds, userId),
+    deleteOrder: (_, { orderId, userId }) => deleteOrder(orderId, userId),
     resetOrder: () => resetOrder(),
   },
 };
